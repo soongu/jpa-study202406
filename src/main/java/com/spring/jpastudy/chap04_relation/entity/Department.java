@@ -42,9 +42,9 @@ public class Department {
         employee.setDepartment(null);
     }
 
-    public void addEmployee(Employee employee) {
-        this.employees.add(employee);
-        employee.setDepartment(this);
-    }
+//    public void addEmployee(Employee employee) {
+//        this.employees.add(employee);
+//        employee.setDepartment(this);
+//    }
 
 }

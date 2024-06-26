@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,6 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @Transactional
 @Rollback(false)
 class DepartmentRepositoryTest {
+
+//    @Autowired
+//    EntityManager em;
 
     @Autowired
     EmployeeRepository employeeRepository;
@@ -104,20 +108,11 @@ class DepartmentRepositoryTest {
         // 1번 부서 사원 목록 가져오기
         List<Employee> employeeList = department.getEmployees();
 
-        // 2번 사원 조회
-        Employee employee = employeeList.get(1);
-
-        //when
-        // 부서목록에서 사원 삭제
-//        employeeList.remove(employee);
-//        employee.setDepartment(null);
+        // 1번 사원 조회
+        Employee employee = employeeRepository.findById(1L).orElseThrow();
 
         department.removeEmployee(employee);
 
-        // 갱신 반영
-//        departmentRepository.save(department);
-
-        //then
     }
 
 
@@ -135,10 +130,23 @@ class DepartmentRepositoryTest {
                 .build();
 
         //when
-        department.addEmployee(employee);
+//        department.addEmployee(employee);
 
         //then
     }
+
+
+    @Test
+    @DisplayName("부모가 삭제되면 자식도 함께 제거된다")
+    void cascadeTest() {
+        //given
+        Department department = departmentRepository.findById(2L).orElseThrow();
+        //when
+        departmentRepository.delete(department);
+
+        //then
+    }
+
 
 
 }
