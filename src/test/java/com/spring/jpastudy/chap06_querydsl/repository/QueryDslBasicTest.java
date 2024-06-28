@@ -183,6 +183,7 @@ class QueryDslBasicTest {
                 .select(idol)
                 .from(idol)
                 .where(idol.age.lt(21))
+                .orderBy()
                 .fetchOne());
 
         Idol foundIdol2 = foundIdolOptional.orElseThrow();
