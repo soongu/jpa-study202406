@@ -223,7 +223,7 @@ class QueryDslJoinTest {
             System.out.printf("\n# 아이돌명: %s, 그룹명: %s, " +
                             "앨범명: %s, 발매연도: %d년\n\n"
                     ,foundIdol.getIdolName(), foundIdol.getGroup().getGroupName()
-            , foundAlbum.getAlbumName(), foundAlbum.getReleaseYear());
+                    , foundAlbum.getAlbumName(), foundAlbum.getReleaseYear());
         });
     }
     
