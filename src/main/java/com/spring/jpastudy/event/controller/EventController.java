@@ -65,4 +65,16 @@ public class EventController {
         return ResponseEntity.ok().body("event deleted!");
     }
 
+    // 수정 요청
+    @PatchMapping("/{eventId}")
+    public ResponseEntity<?> modify(
+            @RequestBody EventSaveDto dto,
+            @PathVariable Long eventId
+    ) {
+        eventService.modifyEvent(dto, eventId);
+
+        return ResponseEntity.ok().body("event modified!!");
+    }
+
+
 }
